@@ -12,11 +12,13 @@
                 url: "http://api.nytimes.com/svc/search/v2/articlesearch.json",
                 params: {
                     "api-key": "b9cea2a4b8aecad8b374d88b275cc59a:10:70162025",
-                    "q": $scope.searchTerm
+                    "q": $scope.searchTerm,
+                    "page" : 1
                 }
             }).success (function(data) {
                 $scope.documents = data.response.docs;
                 console.log($scope.documents[0].web_url);
+                console.log($scope.documents[0].snippet);
                 $scope.isSearching = false;
 
             }).error (function(error){
