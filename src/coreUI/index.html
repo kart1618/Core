@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="newspaper">
+<head>
+    <link rel="stylesheet" href="js/lib/bower_components/angular-material/angular-material.min.css"/>
+    <link rel="stylesheet" href="css/newspaper.css"/>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=RobotoDraft:400,500,700,400italic"/>
+    <meta name="viewport" content="initial-scale=1"/>
+</head>
+<body data-ng-controller="newspaperController" layout="vertical" layout-align="top center">
+<md-toolbar layout="row">
+    <div class="md-toolbar-tools">
+        <span class="md-flex">
+            Core
+        </span>
+    </div>
+</md-toolbar>
+<md-tabs layout="column">
+    <md-tab label="New York Times">
+        <md-content layout-align="left center">
+    <md-sidenav md-component-id="left" class="md-sidenav-left" layout="vertical">
+        Left Nav!
+    </md-sidenav>
+    <div class="app-content">
+        <form data-ng-submit="search()">
+            <md-input-container class="long" data-ng-show="!isSearching">
+                <label>Search for</label>
+                <input data-ng-model="searchTerm"/>
+            </md-input-container>
+            <md-progress-circular md-theme="blue" md-mode="indeterminate"
+                                  data-ng-if="isSearching"></md-progress-circular>
+        </form>
+
+
+        <md-card>
+            <!--{{documents[0].web_url}}-->
+            <!--<div ng-src="{{documents[0].web_url}}"></div>-->
+            <md-button ng-click="openLeftMenu()">
+                Open Left Menu
+            </md-button>
+            <!--<img src="http://placehold.it/300x200" alt="" class="md-card-image"/>-->
+
+            <!--<h3>Image Title</h3>-->
+        </md-card>
+    </div>
+</md-content>
+    </md-tab>
+    <md-tab label="The Guardian">
+
+    </md-tab>
+</md-tabs>
+<script src="js/lib/bower_components/angular/angular.min.js"></script>
+<script src="js/lib/bower_components/angular-aria/angular-aria.js"></script>
+<script src="js/lib/bower_components/angular-animate/angular-animate.js"></script>
+<script src="js/lib/bower_components/angular-material/angular-material.js"></script>
+<script src="css/newspaper.css"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
