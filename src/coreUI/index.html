@@ -7,15 +7,17 @@
     <meta name="viewport" content="initial-scale=1"/>
 </head>
 <body data-ng-controller="newspaperController" layout="vertical" layout-align="top center" >
+
 <md-toolbar layout="row">
     <div class="md-toolbar-tools">
         <span class="md-flex">
             Core
         </span>
+
     </div>
 </md-toolbar>
 <md-tabs layout="column" md-dynamic-height>
-    <md-tab label="The New York Times" layout="column">
+    <md-tab label="The New York Times" layout="column">  <a ui-sref="home"> Home</a>
         <md-sidenav md-component-id="left" class="md-sidenav-left" layout="vertical">
             Left Nav!
         </md-sidenav>
@@ -23,6 +25,13 @@
             Open Left Menu
         </md-button>
         <md-content layout="column" layout-align="left center">
+            <div>
+
+                <!-- THIS IS WHERE WE WILL INJECT OUR CONTENT ============================== -->
+                <div ui-view></div>
+
+            </div>
+
             <div class="app-content">
                 <form data-ng-submit="search()">
                     <md-input-container class="long" data-ng-show="!isSearching">
@@ -53,6 +62,7 @@
 </md-tabs>
 <script src="js/lib/bower_components/angular/angular.min.js"></script>
 <script src="js/lib/bower_components/angular-aria/angular-aria.js"></script>
+<script src="js/lib/bower_components/angular/angular-ui-router.min.js"></script>
 <script src="js/lib/bower_components/angular-animate/angular-animate.js"></script>
 <script src="js/lib/bower_components/angular-material/angular-material.js"></script>
 <script src="css/newspaper.css"></script>

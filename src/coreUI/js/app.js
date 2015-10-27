@@ -1,7 +1,23 @@
 (function(){
     'use strict';
 
-    angular.module('newspaper', ['ngMaterial'])
+    angular.module('newspaper', ['ui.router', 'ngMaterial'])
+        .config(function($stateProvider, $urlRouterProvider) {
+            $urlRouterProvider.otherwise('/home');
+
+            $stateProvider
+            .state('home', {
+                url: '/home',
+                templateUrl: 'views/home.html'
+            })
+            .state('home.news', {
+                url: '/news',
+                templateUrl: 'views/news.html',
+                controller: function($scope) {
+                   $scope.dogs = ['Bernese', 'Husky', 'Goldendoodle'];
+                }
+            });
+        })
      .controller("newspaperController", ['$scope', '$http', '$mdSidenav', function ($scope, $http, $mdSidenav) {
            $scope.documents = [];
            $scope.isSearching = false;
