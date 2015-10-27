@@ -13,53 +13,13 @@
         <span class="md-flex">
             Core
         </span>
-
+        <a ui-sref="home"> Home</a>
     </div>
 </md-toolbar>
-<md-tabs layout="column" md-dynamic-height>
-    <md-tab label="The New York Times" layout="column">  <a ui-sref="home"> Home</a>
-        <md-sidenav md-component-id="left" class="md-sidenav-left" layout="vertical">
-            Left Nav!
-        </md-sidenav>
-        <md-button ng-click="openLeftMenu()">
-            Open Left Menu
-        </md-button>
-        <md-content layout="column" layout-align="left center">
-            <div>
-
-                <!-- THIS IS WHERE WE WILL INJECT OUR CONTENT ============================== -->
-                <div ui-view></div>
-
-            </div>
-
-            <div class="app-content">
-                <form data-ng-submit="search()">
-                    <md-input-container class="long" data-ng-show="!isSearching">
-                        <label>Search for</label>
-                        <input data-ng-model="searchTerm"/>
-                    </md-input-container>
-                    <md-progress-circular md-theme="blue" md-mode="indeterminate"
-                                          data-ng-if="isSearching"></md-progress-circular>
-                </form>
-                <md-card ng-repeat="document in documents">
-                    <md-list>
-                        <md-list-item class="md-2-line">
-                            <!--<md-checkbox ng-model="document"></md-checkbox>-->
-                            <div class="md-list-item-text">
-                                <h3>{{document.headline.main}}</h3>
-
-                                <p>{{document.web_url}}</p>
-                            </div>
-                        </md-list-item>
-                    </md-list>
-                </md-card>
-            </div>
-        </md-content>
-    </md-tab>
-    <md-tab label="The Guardian">
-
-    </md-tab>
-</md-tabs>
+<div>
+    <!-- Injecting the content here -->
+    <div ui-view></div>
+</div>
 <script src="js/lib/bower_components/angular/angular.min.js"></script>
 <script src="js/lib/bower_components/angular-aria/angular-aria.js"></script>
 <script src="js/lib/bower_components/angular/angular-ui-router.min.js"></script>
