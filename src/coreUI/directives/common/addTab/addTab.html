@@ -1,0 +1,33 @@
+<md-tab label="The New York Times" layout="column">
+    <md-sidenav md-component-id="left" class="md-sidenav-left" layout="vertical">
+        Left Nav!
+    </md-sidenav>
+    <md-button ng-click="openLeftMenu()">
+        Open Left Menu
+    </md-button>
+    <md-content layout="column" layout-align="left center">
+
+        <div class="app-content">
+            <form data-ng-submit="search()">
+                <md-input-container class="long" data-ng-show="!isSearching">
+                    <label>Search for</label>
+                    <input data-ng-model="searchTerm"/>
+                </md-input-container>
+                <md-progress-circular md-theme="blue" md-mode="indeterminate"
+                                      data-ng-if="isSearching"></md-progress-circular>
+            </form>
+            <md-card ng-repeat="document in documents">
+                <md-list>
+                    <md-list-item class="md-2-line">
+                        <!--<md-checkbox ng-model="document"></md-checkbox>-->
+                        <div class="md-list-item-text">
+                            <h3>{{document.headline.main}}</h3>
+
+                            <p>{{document.web_url}}</p>
+                        </div>
+                    </md-list-item>
+                </md-list>
+            </md-card>
+        </div>
+    </md-content>
+</md-tab>
