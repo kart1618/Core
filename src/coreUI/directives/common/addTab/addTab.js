@@ -8,14 +8,34 @@ angular.module("core")
             scope: {
                 tabName: "@"
             },
-            controller: ['$scope', '$http', '$mdSidenav', function ($scope, $http, $mdSidenav) {
+            controller: ['$scope', '$filter', '$http', '$mdSidenav', function ($scope, $filter, $http, $mdSidenav) {
                 $scope.documents = [];
                 $scope.isSearching = false;
-//                function init() {
-//                    $scope.tabHeading = angular.copy($scope.tabName);
-//                }
-//                init();
+                $scope.dateTimeToday = new Date();
+                var nytimesMaxDate = new Date("January 01, 1851 00:00:00");
+                $scope.searchOptions = {
+                    show: false,
+                    page: 1,
+                    maxDate: new Date(
+                                nytimesMaxDate.getFullYear(),
+                                nytimesMaxDate.getMonth(),
+                                nytimesMaxDate.getDate())
+                };
+
+                 $scope.minDate = new Date(
+                      $scope.dateTimeToday.getFullYear(),
+                      $scope.dateTimeToday.getMonth(),
+                      $scope.dateTimeToday.getDate());
+                 $scope.maxDate = new Date(
+                      nytimesMaxDate.getFullYear(),
+                      nytimesMaxDate.getMonth(),
+                      nytimesMaxDate.getDate());
+                 $scope.date = $filter("date")($scope.date, "yyyyMMdd");
+                 console.log($scope.date);
+                 console.log($scope.minDate);
+                 console.log($scope.maxDate);
                 $scope.search = function () {
+                    console.log($scope.searchOptions.page);
                     $scope.isSearching = true;
                     $http({
                         method: "GET",
@@ -23,13 +43,15 @@ angular.module("core")
                         params: {
                             "api-key": "b9cea2a4b8aecad8b374d88b275cc59a:10:70162025",
                             "q": $scope.searchTerm,
-                            "page": 1
+                            "page": $scope.searchOptions.page
                         }
                     }).success(function (data) {
                         $scope.documents = data.response.docs;
-                        console.log($scope.documents[0].web_url);
-                        console.log($scope.documents[0].snippet);
+                        $scope.searchOptions.show = true;
                         $scope.isSearching = false;
+//                        console.log($scope.documents[0].web_url);
+//                        console.log($scope.documents[0].snippet);
+                          console.log(data.response.meta.hits);
 
                     }).error(function (error) {
                         console.log(error);

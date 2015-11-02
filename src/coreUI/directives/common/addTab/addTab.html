@@ -5,27 +5,38 @@
     <md-button ng-click="openRightMenu()">
         Open Right Menu
     </md-button>
-    <md-content layout="column" layout-align="left center">
+    <md-content layout="column" layout-align="left center" flex layout-padding>
         <div class="app-content">
             <form data-ng-submit="search()">
                 <md-input-container class="long" data-ng-show="!isSearching">
                     <label>Search for</label>
                     <input data-ng-model="searchTerm"/>
                 </md-input-container>
-                <md-progress-circular md-theme="blue" md-mode="indeterminate" data-ng-if="isSearching"></md-progress-circular>
             </form>
-            <md-card ng-repeat="document in documents">
+            <form data-ng-submit="search()">
+                <div layout="row">
+                    <md-input-container class="long" data-ng-show="searchOptions.show">
+                        <label>Page</label>
+                        <input data-ng-model="searchOptions.page" type="number" step="1"/>
+                    </md-input-container>
+                    <!--<md-datepicker name="date" ng-model="date" md-placeholder="Enter date"-->
+                                   <!--required md-min-date="searchOptions.maxDate" md-max-date="minDate"></md-datepicker>-->
+                    <md-progress-circular md-theme="blue" md-mode="indeterminate"
+                                          data-ng-if="isSearching"></md-progress-circular>
+                </div>
+            </form>
+            <md-card ng-repeat="document in documents" class="md-padding">
+                <h4>{{document.headline.main}}</h4>
                 <md-list>
-                    <md-list-item class="md-3-line">
+                    <md-list-item class="md-2-line">
                         <!--<md-checkbox ng-model="document"></md-checkbox>-->
                         <div class="md-list-item-text">
-                            <h3>{{document.headline.main}}</h3>
-                            <!--<p>{{document.snippet}}</p>-->
-                            <p>{{document.lead_paragraph}}</p>
-                            <a href="{{document.web_url}}">Read Full Article</a>
+                            <p>{{document.snippet}}</p>
                         </div>
                     </md-list-item>
+                    <p>{{document.lead_paragraph}}</p>
                 </md-list>
+                <a href="{{document.web_url}}">Read Full Article</a>
             </md-card>
         </div>
     </md-content>
