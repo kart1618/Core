@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    angular.module("core", ["ui.router", "ngMaterial"])
+    angular.module("core", ["ui.router", "ngSanitize", "ngMaterial"])
         .config(function ($stateProvider, $urlRouterProvider) {
             $urlRouterProvider.otherwise('/home');
             $stateProvider

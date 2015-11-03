@@ -29,7 +29,7 @@
                     <md-list-item class="md-2-line">
                         <!--<md-checkbox ng-model="document"></md-checkbox>-->
                         <div class="md-list-item-text">
-                            <p>{{document.snippet}}</p>
+                            <p data-ng-bind-html="document.snippet"></p>
                         </div>
                     </md-list-item>
                     <p>{{document.lead_paragraph}}</p>

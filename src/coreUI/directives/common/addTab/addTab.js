@@ -29,7 +29,8 @@ angular.module("core")
                         params: {
                             "api-key": "b9cea2a4b8aecad8b374d88b275cc59a:10:70162025",
                             "q": $scope.searchTerm,
-                            "page": $scope.nytimessearchOptions.page
+                            "page": $scope.nytimessearchOptions.page,
+                            "hl": true
                         }
                     }).success(function (data) {
                         $scope.documents = data.response.docs;
