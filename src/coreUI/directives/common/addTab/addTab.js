@@ -11,47 +11,33 @@ angular.module("core")
             controller: ['$scope', '$filter', '$http', '$mdSidenav', function ($scope, $filter, $http, $mdSidenav) {
                 $scope.documents = [];
                 $scope.isSearching = false;
-                $scope.dateTimeToday = new Date();
-                var nytimesMaxDate = new Date("January 01, 1851 00:00:00");
-                $scope.searchOptions = {
+                $scope.nytimessearchOptions = {
                     show: false,
-                    page: 1,
-                    maxDate: new Date(
-                                nytimesMaxDate.getFullYear(),
-                                nytimesMaxDate.getMonth(),
-                                nytimesMaxDate.getDate())
+                    page: 1
                 };
-
-                 $scope.minDate = new Date(
-                      $scope.dateTimeToday.getFullYear(),
-                      $scope.dateTimeToday.getMonth(),
-                      $scope.dateTimeToday.getDate());
-                 $scope.maxDate = new Date(
-                      nytimesMaxDate.getFullYear(),
-                      nytimesMaxDate.getMonth(),
-                      nytimesMaxDate.getDate());
-                 $scope.date = $filter("date")($scope.date, "yyyyMMdd");
-                 console.log($scope.date);
-                 console.log($scope.minDate);
-                 console.log($scope.maxDate);
+                console.log($scope.tabName);
                 $scope.search = function () {
-                    console.log($scope.searchOptions.page);
+
+                    if ($scope.tabName === "The New York Times") {
+                        console.log("HERe");
+                    }
                     $scope.isSearching = true;
+
                     $http({
                         method: "GET",
                         url: "http://api.nytimes.com/svc/search/v2/articlesearch.json",
                         params: {
                             "api-key": "b9cea2a4b8aecad8b374d88b275cc59a:10:70162025",
                             "q": $scope.searchTerm,
-                            "page": $scope.searchOptions.page
+                            "page": $scope.nytimessearchOptions.page
                         }
                     }).success(function (data) {
                         $scope.documents = data.response.docs;
-                        $scope.searchOptions.show = true;
+                        $scope.nytimessearchOptions.show = true;
                         $scope.isSearching = false;
 //                        console.log($scope.documents[0].web_url);
 //                        console.log($scope.documents[0].snippet);
-                          console.log(data.response.meta.hits);
+                        console.log(data.response.meta.hits);
 
                     }).error(function (error) {
                         console.log(error);
@@ -66,5 +52,5 @@ angular.module("core")
                 };
                 $scope.openRightMenu();
             }]
-    }
-});
+        }
+    });
