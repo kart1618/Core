@@ -1,0 +1,27 @@
+<md-card data-ng-show=displayResults[0] ng-repeat="document in resultArr" class="md-padding">
+    <h4>{{document.headline.main}}</h4>
+    <md-list>
+        <md-list-item class="md-2-line">
+            <!--<md-checkbox ng-model="document"></md-checkbox>-->
+            <div class="md-list-item-text">
+                <p data-ng-bind-html="document.snippet"></p>
+            </div>
+        </md-list-item>
+        <p>{{document.lead_paragraph}}</p>
+    </md-list>
+    <a href="{{document.web_url}}">Read Full Article</a>
+</md-card>
+
+<md-card data-ng-show=displayResults[1] ng-repeat="document in resultArr" class="md-padding">
+    <h4>{{document.webTitle}}</h4>
+    <md-list>
+        <md-list-item class="md-2-line">
+            <!--<md-checkbox ng-model="document"></md-checkbox>-->
+            <div class="md-list-item-text">
+                <p data-ng-bind-html="document.fields.trailText"></p>
+            </div>
+        </md-list-item>
+        <p>{{document.lead_paragraph}}</p>
+    </md-list>
+    <a href="{{document.webUrl}}">Read Full Article</a>
+</md-card>

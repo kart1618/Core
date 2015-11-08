@@ -6,20 +6,19 @@ angular.module("core")
             restrict: "E",
             templateUrl: "directives/common/addTab/addTab.html",
             scope: {
-                tabName: "@"
+                tabName: "@",
+                showTab: "="
             },
             controller: ['$scope', '$filter', '$http', '$mdSidenav', function ($scope, $filter, $http, $mdSidenav) {
                 $scope.documents = [];
                 $scope.isSearching = false;
+                $scope.showSearchOptions = false;
                 $scope.searchOptions = {
-                    show: false,
                     page: 1
                 };
-                console.log($scope.tabName);
+                console.log($scope.showTab);
                 $scope.search = function () {
-
                     if ($scope.tabName === "The New York Times") {
-                        console.log("Here");
                         $scope.isSearching = true;
 
                         $http({
@@ -33,19 +32,15 @@ angular.module("core")
                             }
                         }).success(function (data) {
                             $scope.documents = data.response.docs;
-                            $scope.searchOptions.show = true;
+                            $scope.showSearchOptions = true;
                             $scope.isSearching = false;
-                            //                        console.log($scope.documents[0].web_url);
-                            //                        console.log($scope.documents[0].snippet);
                             console.log($scope.documents);
 
                         }).error(function (error) {
                             console.log(error);
                             $scope.isSearching = false;
                         });
-                        console.log($scope.searchTerm + $scope.tabName);
                     } else if ($scope.tabName === "The Guardian") {
-                        //////
                         $scope.isSearching = true;
                         $http({
                             method: "GET",
@@ -59,10 +54,8 @@ angular.module("core")
                         }).success(function (data) {
                             $scope.documents = data.response.results;
                             console.log($scope.documents);
-                            $scope.searchOptions.show = true;
+                            $scope.showSearchOptions = true;
                             $scope.isSearching = false;
-                            //                        console.log($scope.documents[0].web_url);
-                            //                        console.log($scope.documents[0].snippet);
                             console.log(data.response.pageSize);
 
                         }).error(function (error) {
@@ -81,6 +74,11 @@ angular.module("core")
                     console.log("HELLO");
                 };
                 $scope.openRightMenu();
+
+                $scope.clearResults = function () {
+                    $scope.documents = "";
+                    $scope.showSearchOptions = false;
+                }
             }]
         }
     });
