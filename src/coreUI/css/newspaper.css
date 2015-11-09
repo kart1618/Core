@@ -17,3 +17,7 @@ md-card {
 md-backdrop.md-sidenav-backdrop {
   display: none;
 }
+
+.white-space-100-r {
+    margin-right: 100px;
+}
