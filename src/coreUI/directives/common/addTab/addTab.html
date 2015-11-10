@@ -25,13 +25,13 @@
             </div>
         </md-toolbar>
         <div class="app-content">
-            <form data-ng-submit="search()">
+            <form data-ng-submit="search(searchText)">
                 <md-input-container class="long" data-ng-show="!isSearching">
                     <label>Search for</label>
-                    <input data-ng-model="searchTerm"/>
+                    <input data-ng-model="searchText"/>
                 </md-input-container>
             </form>
-            <form data-ng-submit="search()">
+            <form data-ng-submit="search(searchText)">
                 <div layout="row">
                     <md-input-container class="long" data-ng-show="showSearchOptions">
                         <label>Page</label>

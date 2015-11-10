@@ -4,9 +4,7 @@
             <h2 class="md-title">Subscription Service</h2>
 
             <form name="emailUtility">
-
                 <label>The New York Times</label>
-
                 <div layout="row">
                     <md-input-container class="long white-space-100-r">
                         <label>Key Words (Comma Separated)</label>
@@ -15,13 +13,34 @@
                     <span></span>
                     <md-input-container class="long white-space-100-r">
                         <label>Frequency</label>
-                        <md-select ng-model="user.frequency">
+                        <md-select ng-model="user.nytFrequency">
                             <md-option ng-repeat="frequency in frequencies" value="{{frequency.key}}">
                                 {{frequency.key}}
                             </md-option>
                         </md-select>
                     </md-input-container>
                 </div>
+
+                <label>The Guardian</label>
+                <div layout="row">
+                    <md-input-container class="long white-space-100-r">
+                        <label>Key Words (Comma Separated)</label>
+                        <input data-ng-model="searchOptions.page"/>
+                    </md-input-container>
+                    <span></span>
+                    <md-input-container class="long white-space-100-r">
+                        <label>Frequency</label>
+                        <md-select ng-model="user.guardianFrequency">
+                            <md-option ng-repeat="frequency in frequencies" value="{{frequency.key}}">
+                                {{frequency.key}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+
+                <md-checkbox>
+                   Same as above
+                </md-checkbox>
             </form>
             <div class="md-actions" layout="row" layout-align="end center">
                 <md-button>Subscribe</md-button>

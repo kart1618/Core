@@ -9,7 +9,8 @@ angular.module("core")
             },
             controller: ['$scope', function ($scope) {
                 $scope.user = {
-                    frequency: "Daily"
+                    nytFrequency: "Daily",
+                    guardianFrequency: "Daily"
                 };
 
                 $scope.frequencies = ("Daily Weekly Monthly").split(" ").map(function(frequency) {

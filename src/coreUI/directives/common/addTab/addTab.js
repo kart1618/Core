@@ -13,20 +13,30 @@ angular.module("core")
                 $scope.documents = [];
                 $scope.isSearching = false;
                 $scope.showSearchOptions = false;
+                $scope.nytPageResetCounter = 0;
+                $scope.guardianPageResetCounter = 0;
                 $scope.searchOptions = {
                     page: 1
                 };
+                $scope.searchText = "";
+
                 console.log($scope.showTab);
-                $scope.search = function () {
+                $scope.search = function (userSearchText) {
+
+                    $scope.searchText = userSearchText;
                     if ($scope.tabName === "The New York Times") {
                         $scope.isSearching = true;
-
+                        if ($scope.nytPageResetCounter > 0) {
+                            $scope.nytPageResetCounter = 0;
+                            $scope.searchOptions.page = 1;
+                        }
+                        console.log($scope.searchText);
                         $http({
                             method: "GET",
                             url: "http://api.nytimes.com/svc/search/v2/articlesearch.json",
                             params: {
                                 "api-key": "b9cea2a4b8aecad8b374d88b275cc59a:10:70162025",
-                                "q": $scope.searchTerm,
+                                "q": $scope.searchText,
                                 "page": $scope.searchOptions.page,
                                 "hl": true
                             }
@@ -42,12 +52,16 @@ angular.module("core")
                         });
                     } else if ($scope.tabName === "The Guardian") {
                         $scope.isSearching = true;
+                        if ($scope.guardianPageResetCounter > 0) {
+                            $scope.guardianPageResetCounter = 0;
+                            $scope.searchOptions.page = 1;
+                        }
                         $http({
                             method: "GET",
                             url: "http://content.guardianapis.com/search",
                             params: {
                                 "api-key": "5qxrs3tb5vsaa5yujzuxbdyv",
-                                "q": $scope.searchTerm,
+                                "q": $scope.searchText,
                                 "page": $scope.searchOptions.page,
                                 "show-fields": "trailText"
                             }
@@ -78,6 +92,12 @@ angular.module("core")
                 $scope.clearResults = function () {
                     $scope.documents = "";
                     $scope.showSearchOptions = false;
+                    if ($scope.tabName === "The New York Times") {
+                        $scope.nytPageResetCounter += 1;
+                    } else if ($scope.tabName === "The Guardian") {
+                        $scope.guardianPageResetCounter += 1;
+                    }
+
                 }
             }]
         }
