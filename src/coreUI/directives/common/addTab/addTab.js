@@ -1,7 +1,7 @@
 "use strict";
 
 angular.module("core")
-    .directive("addTab", function () {
+    .directive("addTab", ["tabService", function (tabService) {
         return {
             restrict: "E",
             templateUrl: "directives/common/addTab/addTab.html",
@@ -9,75 +9,55 @@ angular.module("core")
                 tabName: "@",
                 showTab: "="
             },
-            controller: ['$scope', '$filter', '$http', '$mdSidenav', function ($scope, $filter, $http, $mdSidenav) {
+            controller: ["$scope", "$filter", "$http", "tabService", "$mdSidenav", function ($scope, $filter, $http, tabService, $mdSidenav) {
                 $scope.documents = [];
                 $scope.isSearching = false;
                 $scope.showSearchOptions = false;
-                $scope.nytPageResetCounter = 0;
-                $scope.guardianPageResetCounter = 0;
+                var nytPageResetCounter = 0;
+                var guardianPageResetCounter = 0;
+                var promise, success, error;
                 $scope.searchOptions = {
                     page: 1
                 };
                 $scope.searchText = "";
 
-                console.log($scope.showTab);
                 $scope.search = function (userSearchText) {
-
                     $scope.searchText = userSearchText;
+                    $scope.isSearching = true;
+                    $scope.showSearchOptions = false;
                     if ($scope.tabName === "The New York Times") {
-                        $scope.isSearching = true;
-                        if ($scope.nytPageResetCounter > 0) {
-                            $scope.nytPageResetCounter = 0;
+                        if (nytPageResetCounter > 0) {
+                            nytPageResetCounter = 0;
                             $scope.searchOptions.page = 1;
                         }
-                        console.log($scope.searchText);
-                        $http({
-                            method: "GET",
-                            url: "http://api.nytimes.com/svc/search/v2/articlesearch.json",
-                            params: {
-                                "api-key": "b9cea2a4b8aecad8b374d88b275cc59a:10:70162025",
-                                "q": $scope.searchText,
-                                "page": $scope.searchOptions.page,
-                                "hl": true
-                            }
-                        }).success(function (data) {
-                            $scope.documents = data.response.docs;
+                        promise = tabService.nytArticleSearch($scope.searchText, $scope.searchOptions.page);
+                        success = function(response) {
+                            $scope.documents = response.data.response.docs;
                             $scope.showSearchOptions = true;
                             $scope.isSearching = false;
-                            console.log($scope.documents);
-
-                        }).error(function (error) {
+                        };
+                        error = function(error) {
                             console.log(error);
                             $scope.isSearching = false;
-                        });
-                    } else if ($scope.tabName === "The Guardian") {
-                        $scope.isSearching = true;
-                        if ($scope.guardianPageResetCounter > 0) {
-                            $scope.guardianPageResetCounter = 0;
+                        };
+                        promise.then(success, error);
+                    }
+                    else if ($scope.tabName === "The Guardian") {
+                        if (guardianPageResetCounter > 0) {
+                            guardianPageResetCounter = 0;
                             $scope.searchOptions.page = 1;
                         }
-                        $http({
-                            method: "GET",
-                            url: "http://content.guardianapis.com/search",
-                            params: {
-                                "api-key": "5qxrs3tb5vsaa5yujzuxbdyv",
-                                "q": $scope.searchText,
-                                "page": $scope.searchOptions.page,
-                                "show-fields": "trailText"
-                            }
-                        }).success(function (data) {
-                            $scope.documents = data.response.results;
-                            console.log($scope.documents);
+                        promise = tabService.guardianArticleSearch($scope.searchText, $scope.searchOptions.page);
+                        success = function(response) {
+                            $scope.documents = response.data.response.results;
                             $scope.showSearchOptions = true;
                             $scope.isSearching = false;
-                            console.log(data.response.pageSize);
-
-                        }).error(function (error) {
+                        };
+                        error = function(response) {
                             console.log(error);
                             $scope.isSearching = false;
-                        });
-                        console.log($scope.searchTerm + " " + $scope.tabName);
-                        //////
+                        };
+                        promise.then(success, error);
                     }
                 };
                 $mdSidenav('right').open();
@@ -93,12 +73,11 @@ angular.module("core")
                     $scope.documents = "";
                     $scope.showSearchOptions = false;
                     if ($scope.tabName === "The New York Times") {
-                        $scope.nytPageResetCounter += 1;
+                        nytPageResetCounter += 1;
                     } else if ($scope.tabName === "The Guardian") {
-                        $scope.guardianPageResetCounter += 1;
+                        guardianPageResetCounter += 1;
                     }
-
                 }
             }]
         }
-    });
+    }]);
