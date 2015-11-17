@@ -9,7 +9,10 @@
         </md-list-item>
         <p>{{document.lead_paragraph}}</p>
     </md-list>
-    <a href="{{document.web_url}}">Read Full Article</a>
+    <div class="md-actions" layout="row" layout-align="end center">
+        <a href="{{document.web_url}}">Read Full Article</a>
+        <md-button ng-click="analyzeSentiment(document.web_url)">Analyze Sentiment</md-button>
+    </div>
 </md-card>
 
 <md-card data-ng-show=displayResults[1] ng-repeat="document in resultArr" class="md-padding">
@@ -23,5 +26,8 @@
         </md-list-item>
         <p>{{document.lead_paragraph}}</p>
     </md-list>
-    <a href="{{document.webUrl}}">Read Full Article</a>
+    <div class="md-actions" layout="row" layout-align="end center">
+        <a href="{{document.webUrl}}">Read Full Article</a>
+        <md-button ng-click="analyzeSentiment(document.webUrl)">Analyze Sentiment</md-button>
+    </div>
 </md-card>
