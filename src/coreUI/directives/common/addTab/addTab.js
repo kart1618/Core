@@ -59,6 +59,19 @@ angular.module("core")
                         };
                         promise.then(success, error);
                     }
+                    else if ($scope.tabName === "You Tube") {
+                        promise = tabService.youtubeSearch($scope.searchText, "video");
+                        success = function(response) {
+                            console.log(response.data.items);
+                            $scope.documents = response.data.items;
+                            $scope.isSearching = false;
+                        };
+                        error = function(response) {
+                            console.log(response);
+                            $scope.isSearching = false;
+                        };
+                        promise.then(success, error);
+                    }
                 };
                 $mdSidenav('right').open();
                 $scope.openRightMenu = function () {

@@ -19,7 +19,13 @@ angular.module("core")
                 return response;
             });
         };
-
+        tabService.youtubeSearch = function (searchText, type) {
+            var videoSearchEndPoint = "https://www.googleapis.com/youtube/v3/search?part=snippet";
+            videoSearchEndPoint += "&maxResults=10" + "&order=relevance" + "&q=" + searchText + "&type=" + type + "&key=" + apiKeys["googleBrowserKey"];
+            return $http.get(videoSearchEndPoint).then(function(response) {
+                    return response;
+            });
+        };
         tabService.hodSentimentAnalysis = function (url) {
             var sentimentAnalysisEndpoint = "https://api.havenondemand.com/1/api/sync/analyzesentiment/v1?";
             sentimentAnalysisEndpoint += "url=" + url + "&apikey=" + apiKeys["hod"];

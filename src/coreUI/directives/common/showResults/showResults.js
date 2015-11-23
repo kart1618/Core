@@ -10,7 +10,7 @@ angular.module("core")
             },
             controller: ["$scope", "tabService", function ($scope, tabService) {
 
-                $scope.displayResults = [false, false];
+                $scope.displayResults = [false, false, false];
                 $scope.url = "";
                 var promise, success, error;
 
@@ -21,8 +21,17 @@ angular.module("core")
                      else if ($scope.tabName === "The Guardian") {
                         $scope.displayResults[1] = true;
                      }
+                     else if ($scope.tabName === "You Tube") {
+                        $scope.url = "https://www.youtube.com/watch?v=";
+                        $scope.displayResults[2] = true;
+                     }
                 };
                 initialise();
+
+                $scope.getYouTubeUrl = function (id) {
+                    $scope.url = "https://www.youtube.com/watch?v=" + id;
+                    return $scope.url;
+                };
 
                 $scope.analyzeSentiment = function (url) {
                     $scope.url = url;
