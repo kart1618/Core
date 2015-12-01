@@ -2,12 +2,17 @@
     'use strict';
     angular.module("core", ["ui.router", "ngSanitize", "ngMaterial"])
         .config(function ($stateProvider, $urlRouterProvider) {
-            $urlRouterProvider.otherwise('/home');
+            $urlRouterProvider.otherwise('/login');
             $stateProvider
                 .state('root', {
                     abstract: 'true',
                     url: '',
                     templateUrl: 'views/root.html'
+                })
+                .state('root.login', {
+                    url: '/login',
+                    templateUrl: 'views/login.html',
+                    controller: 'loginController'
                 })
                 .state('root.home', {
                     url: '/home',
