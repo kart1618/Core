@@ -3,7 +3,7 @@ angular.module("core")
     .directive("utilitiesTab", function () {
         return {
             restrict: "E",
-            templateUrl: "directives/UtilitiesTab.html",
+            templateUrl: "directives/utilitiesTab/UtilitiesTab.html",
             scope: {
                 tabName: "@"
             },
