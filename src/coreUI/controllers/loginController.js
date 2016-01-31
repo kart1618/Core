@@ -16,6 +16,8 @@ angular.module("core").controller("loginController", ['$scope', '$http', '$mdSid
            // The ID token you need to pass to your backend:
            var id_token = googleUser.getAuthResponse().id_token;
            console.log("ID Token: " + id_token);
+         console.log("Inside onSignIn.");
+         console.log(googleUser);
        }
     };
 
