@@ -62,4 +62,4 @@ src/coreui/js/lib/bower_components/*
 /.idea/*.xml
 /coreservies/.idea/*
 /coreservies/.idea/*.xml
-/coreservies/.idea/.name
+/coreservies/.idea/*.name
