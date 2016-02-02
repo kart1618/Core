@@ -53,13 +53,3 @@ src/coreui/js/lib/bower_components/*
 # Build Targets #
 #################
 /coreservices/target/*
-
-# IntelliJ #
-############
-
-*.iml
-/.idea/*
-/.idea/*.xml
-/coreservies/.idea/*
-/coreservies/.idea/*.xml
-/coreservies/.idea/*.name
