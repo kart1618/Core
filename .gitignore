@@ -48,7 +48,7 @@ Thumbs.db
 
 # Java Script #
 ###############
-src/coreui/js/lib/bower_components/*
+src/main/resources/bower_components/*
 
 # Build Targets #
 #################
