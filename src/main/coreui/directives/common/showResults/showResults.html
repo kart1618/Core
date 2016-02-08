@@ -1,0 +1,52 @@
+<md-card data-ng-show=displayResults[0] ng-repeat="document in resultArr" class="md-padding">
+    <h4>{{document.headline.main}}</h4>
+    <md-list>
+        <md-list-item class="md-2-line">
+            <!--<md-checkbox ng-model="document"></md-checkbox>-->
+            <div class="md-list-item-text">
+                <p data-ng-bind-html="document.snippet"></p>
+            </div>
+        </md-list-item>
+        <p>{{document.lead_paragraph}}</p>
+    </md-list>
+    <div class="md-actions" layout="row" layout-align="end center">
+        <a href="{{document.web_url}}">Read Full Article</a>
+        <md-button ng-click="analyzeSentiment(document.web_url)">Analyze Sentiment</md-button>
+    </div>
+</md-card>
+
+<md-card data-ng-show=displayResults[1] ng-repeat="document in resultArr" class="md-padding">
+    <h4>{{document.webTitle}}</h4>
+    <md-list>
+        <md-list-item class="md-2-line">
+            <!--<md-checkbox ng-model="document"></md-checkbox>-->
+            <div class="md-list-item-text">
+                <p data-ng-bind-html="document.fields.trailText"></p>
+            </div>
+        </md-list-item>
+        <p>{{document.lead_paragraph}}</p>
+    </md-list>
+    <div class="md-actions" layout="row" layout-align="end center">
+        <a href="{{document.webUrl}}">Read Full Article</a>
+        <md-button ng-click="analyzeSentiment(document.webUrl)">Analyze Sentiment</md-button>
+    </div>
+</md-card>
+
+<md-card data-ng-show=displayResults[2] ng-repeat="document in resultArr" class="md-padding">
+    <h4>{{document.snippet.title}}</h4>
+    <md-list>
+        <md-list-item class="md-2-line">
+            <!--<md-checkbox ng-model="document"></md-checkbox>-->
+            <div class="md-list-item-text">
+                <p data-ng-bind-html="document.snippet.description"></p>
+            </div>
+        </md-list-item>
+        <!--<p>{{document.id.videoId}}</p>-->
+    </md-list>
+    <!--<iframe id="ytplayer" type="text/html" width="640" height="390"-->
+            <!--src="http://www.youtube.com/embed/M7lc1UVf-VE?autoplay=0&origin=http://example.com"-->
+            <!--frameborder="0"/>-->
+    <div class="md-actions" layout="row" layout-align="end center">
+        <a href="https://www.youtube.com/watch?v={{document.id.videoId}}">Watch on YouTube</a>
+    </div>
+</md-card>
