@@ -1,7 +1,6 @@
 # Compiled source #
 ###################
 *.com
-*.class
 *.dll
 *.exe
 *.o
@@ -36,20 +35,18 @@
 ehthumbs.db
 Thumbs.db
 
-# Java #
-########
-
-*.class
-
 # Package Files #
-*.jar
 *.war
 *.ear
 
-# Java Script #
-###############
-src/main/resources/bower_components/*
+# Idea Files #
+#################
+.idea
+
+# JavaScript Files #
+####################
+src/main/resources/static/lib/bower_components/
 
 # Build Targets #
 #################
-/coreservices/target/*
+/target/
