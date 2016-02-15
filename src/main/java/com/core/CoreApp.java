@@ -1,4 +1,4 @@
-package services;
+package com.core;
 
 import java.util.Arrays;
 

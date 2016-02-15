@@ -5,7 +5,8 @@ angular.module("core")
         var coreService = this;
 
         coreService.nytArticleSearch = function () {
-            var articleSearchEndPoint = "/env";
+            //var articleSearchEndPoint = "/env";
+            var articleSearchEndPoint = "/create?email=test@example.com&name=testuser2";
             console.log(articleSearchEndPoint);
             return $http.get(articleSearchEndPoint).then(function(response) {
                 return response;
