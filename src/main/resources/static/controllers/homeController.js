@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module("core")
-    .controller("homeController", ['$scope', '$http', '$mdSidenav', function ($scope, $http, $mdSidenav) {
+    .controller("homeController", ["$scope", "$http", "$mdSidenav", "loginService", function ($scope, $http, $mdSidenav, loginService) {
         $scope.nytTab = true;
         $scope.guardianTab = true;
         $scope.youtubeTab = true;
@@ -12,6 +12,8 @@ angular.module("core")
             });
         };
         inititialise();
+
+        $scope.userDetails = loginService.getUserData();
 
         $scope.googleSignOut = function () {
             var auth2 = gapi.auth2.getAuthInstance();
