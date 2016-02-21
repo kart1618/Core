@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.core.repositories.UserRepository;
+import com.core.repositories.UserDao;
 
 @Controller
 public class UserController {
@@ -16,7 +16,7 @@ public class UserController {
         String userId = "";
         try {
             User user = new User(email, name);
-            userRepository.save(user);
+            userDao.save(user);
             userId = String.valueOf(user.getId());
         }
         catch (Exception ex) {
@@ -27,5 +27,5 @@ public class UserController {
 
     // Wire the UserDao used inside this controller.
     @Autowired
-    private UserRepository userRepository;
+    private UserDao userDao;
 }

@@ -41,11 +41,12 @@ Thumbs.db
 
 # Idea Files #
 #################
-.idea
+.idea/compiler.xml
+.idea/workspace.xml
 
 # JavaScript Files #
 ####################
-src/main/resources/static/lib/bower_components/
+src/main/resources/public/lib/bower_components/
 
 # Build Targets #
 #################
