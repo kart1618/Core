@@ -9,9 +9,29 @@
         <md-button aria-label="Sign Out" data-ng-click="googleSignOut()">
             {{userDetails.userName}} Sign Out
         </md-button>
-        <md-button class="md-icon-button" aria-label="Settings">
-            <md-icon md-svg-icon="img/menu.svg"></md-icon>
-        </md-button>
+        <md-menu md-position-mode="target-right target" >
+            <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                <md-icon md-svg-icon="img/menu.svg"></md-icon>
+            </md-button>
+            <md-menu-content width="4" >
+                <md-menu-item>
+                    <md-button ng-click="method1()">
+                        <div layout="row">
+                            <p flex>Edit profile</p>
+                            <md-icon md-menu-align-target md-svg-icon="img/edit.svg" style="margin: auto 3px auto 0;"></md-icon>
+                        </div>
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button ng-click="googleSignOut()">
+                        <div layout="row">
+                            <p flex>Sign out</p>
+                            <md-icon md-menu-align-target md-svg-icon="img/exit_to_app.svg" style="margin: auto 3px auto 0;"></md-icon>
+                        </div>
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
     </div>
 </md-toolbar>
 <md-tabs layout="column" md-dynamic-height>

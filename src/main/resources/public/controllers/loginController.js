@@ -1,8 +1,7 @@
-'use strict';
+"use strict";
 
-angular.module("core").controller("loginController", ["$scope", "$http", "$mdSidenav", "loginService", function ($scope, $http, $mdSidenav, loginService) {
+angular.module("core").controller("loginController", ["$scope", "$http", "$state", "$mdSidenav", "loginService", function ($scope, $http, $state, $mdSidenav, loginService) {
     console.log("Inside loginController.");
-
 
     $scope.options = {
         'onsuccess': function (googleUser) {
@@ -20,13 +19,7 @@ angular.module("core").controller("loginController", ["$scope", "$http", "$mdSid
             console.log("Inside onSignIn.");
             console.log(googleUser);
             loginService.setUserData(googleUser.getAuthResponse().id_token, profile.getName(), profile.getEmail(), profile.getImageUrl());
+            $state.go("root.home");
         }
     };
-
-    /*    $scope.googleSignOut = function () {
-     var auth2 = gapi.auth2.getAuthInstance();
-     auth2.signOut().then(function () {
-     console.log('User signed out.');
-     });
-     };*/
 }]);

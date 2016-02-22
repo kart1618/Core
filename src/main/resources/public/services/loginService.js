@@ -16,5 +16,8 @@ angular.module("core")
             return userDetails;
         };
 
+        loginService.resetUserData = function () {
+            userDetails = {};
+        };
         return loginService;
     }]);
