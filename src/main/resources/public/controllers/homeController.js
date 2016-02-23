@@ -14,6 +14,10 @@ angular.module("core")
             $state.go("root.login");
         }
 
+        $scope.editProfile = function () {
+            $state.go("root.profile");
+        };
+
         $scope.googleSignOut = function () {
             var auth2 = gapi.auth2.getAuthInstance();
             auth2.signOut().then(function () {

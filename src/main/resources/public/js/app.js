@@ -18,6 +18,11 @@
                     url: '/home',
                     templateUrl: 'views/home.html',
                     controller: 'homeController'
-                });
+                })
+                .state('root.profile', {
+                    url:'/profile',
+                    templateUrl: 'views/profile.html',
+                    controller: 'profileController'
+                })
         })
 })();
