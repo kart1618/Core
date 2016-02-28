@@ -2,7 +2,6 @@
     <h4>{{document.headline.main}}</h4>
     <md-list>
         <md-list-item class="md-2-line">
-            <!--<md-checkbox ng-model="document"></md-checkbox>-->
             <div class="md-list-item-text">
                 <p data-ng-bind-html="document.snippet"></p>
             </div>
@@ -11,7 +10,24 @@
     </md-list>
     <div class="md-actions" layout="row" layout-align="end center">
         <a href="{{document.web_url}}">Read Full Article</a>
-        <md-button ng-click="analyzeSentiment(document.web_url)">Analyze Sentiment</md-button>
+        <md-button ng-disabled="document.sentimentVerdict" ng-click="analyzeSentiment(document.web_url, document)">
+            <span ng-if="document.sentimentVerdict === undefined">Analyze Sentiment</span>
+            <md-icon ng-if="document.sentimentVerdict === 'positive'" md-svg-icon="img/thumb_up.svg">
+                <md-tooltip md-direction="top">
+                    Positive
+                </md-tooltip>
+            </md-icon>
+            <md-icon ng-if="document.sentimentVerdict === 'negative'" md-svg-icon="img/thumb_down.svg">
+                <md-tooltip md-direction="top">
+                    Negative
+                </md-tooltip>
+            </md-icon>
+            <md-icon ng-if="document.sentimentVerdict === 'neutral'" md-svg-icon="img/drag_handle.svg">
+                <md-tooltip md-direction="top">
+                    Neutral
+                </md-tooltip>
+            </md-icon>
+        </md-button>
     </div>
 </md-card>
 
@@ -19,7 +35,6 @@
     <h4>{{document.webTitle}}</h4>
     <md-list>
         <md-list-item class="md-2-line">
-            <!--<md-checkbox ng-model="document"></md-checkbox>-->
             <div class="md-list-item-text">
                 <p data-ng-bind-html="document.fields.trailText"></p>
             </div>
@@ -30,9 +45,21 @@
         <a href="{{document.webUrl}}">Read Full Article</a>
         <md-button ng-disabled="document.sentimentVerdict" ng-click="analyzeSentiment(document.webUrl, document)">
             <span ng-if="document.sentimentVerdict === undefined">Analyze Sentiment</span>
-            <md-icon ng-if="document.sentimentVerdict === 'positive'" md-svg-icon="img/thumb_up.svg"></md-icon>
-            <md-icon ng-if="document.sentimentVerdict === 'negative'" md-svg-icon="img/thumb_down.svg"></md-icon>
-            <md-icon ng-if="document.sentimentVerdict === 'neutral'" md-svg-icon="img/trending_neutral.svg"></md-icon>
+            <md-icon ng-if="document.sentimentVerdict === 'positive'" md-svg-icon="img/thumb_up.svg">
+                <md-tooltip md-direction="top">
+                    Positive
+                </md-tooltip>
+            </md-icon>
+            <md-icon ng-if="document.sentimentVerdict === 'negative'" md-svg-icon="img/thumb_down.svg">
+                <md-tooltip md-direction="top">
+                    Negative
+                </md-tooltip>
+            </md-icon>
+            <md-icon ng-if="document.sentimentVerdict === 'neutral'" md-svg-icon="img/drag_handle.svg">
+                <md-tooltip md-direction="top">
+                    Neutral
+                </md-tooltip>
+            </md-icon>
         </md-button>
     </div>
 </md-card>
@@ -41,7 +68,6 @@
     <h4>{{document.snippet.title}}</h4>
     <md-list>
         <md-list-item class="md-2-line">
-            <!--<md-checkbox ng-model="document"></md-checkbox>-->
             <div class="md-list-item-text">
                 <p data-ng-bind-html="document.snippet.description"></p>
             </div>
