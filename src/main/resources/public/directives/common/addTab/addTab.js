@@ -21,58 +21,68 @@ angular.module("core")
                 };
                 $scope.searchText = "";
 
+                var searchNewYorkTimes = function() {
+                    if (nytPageResetCounter > 0) {
+                        nytPageResetCounter = 0;
+                        $scope.searchOptions.page = 1;
+                    }
+                    promise = tabService.nytArticleSearch($scope.searchText, $scope.searchOptions.page);
+                    success = function(response) {
+                        $scope.documents = response.data.response.docs;
+                        $scope.showSearchOptions = true;
+                        $scope.isSearching = false;
+                    };
+                    error = function(error) {
+                        $scope.isSearching = false;
+                    };
+                    promise.then(success, error);
+                };
+
+                var searchGaurdian = function () {
+                    if (guardianPageResetCounter > 0) {
+                        guardianPageResetCounter = 0;
+                        $scope.searchOptions.page = 1;
+                    }
+                    promise = tabService.guardianArticleSearch($scope.searchText, $scope.searchOptions.page);
+                    success = function(response) {
+                        $scope.documents = response.data.response.results;
+                        $scope.showSearchOptions = true;
+                        $scope.isSearching = false;
+                    };
+                    error = function(error) {
+                        $scope.isSearching = false;
+                    };
+                    promise.then(success, error);
+                };
+
+                var searchYoutube = function () {
+                    promise = tabService.youtubeSearch($scope.searchText, "video");
+                    success = function(response) {
+                        console.log(response.data.items);
+                        $scope.documents = response.data.items;
+                        $scope.isSearching = false;
+                    };
+                    error = function(error) {
+                        $scope.isSearching = false;
+                    };
+                    promise.then(success, error);
+                };
+
                 $scope.search = function (userSearchText) {
                     $scope.searchText = userSearchText;
                     $scope.isSearching = true;
                     $scope.showSearchOptions = false;
                     if ($scope.tabName === "The New York Times") {
-                        if (nytPageResetCounter > 0) {
-                            nytPageResetCounter = 0;
-                            $scope.searchOptions.page = 1;
-                        }
-                        promise = tabService.nytArticleSearch($scope.searchText, $scope.searchOptions.page);
-                        success = function(response) {
-                            $scope.documents = response.data.response.docs;
-                            $scope.showSearchOptions = true;
-                            $scope.isSearching = false;
-                        };
-                        error = function(error) {
-                            console.log(error);
-                            $scope.isSearching = false;
-                        };
-                        promise.then(success, error);
+                        searchNewYorkTimes();
                     }
                     else if ($scope.tabName === "The Guardian") {
-                        if (guardianPageResetCounter > 0) {
-                            guardianPageResetCounter = 0;
-                            $scope.searchOptions.page = 1;
-                        }
-                        promise = tabService.guardianArticleSearch($scope.searchText, $scope.searchOptions.page);
-                        success = function(response) {
-                            $scope.documents = response.data.response.results;
-                            $scope.showSearchOptions = true;
-                            $scope.isSearching = false;
-                        };
-                        error = function(response) {
-                            console.log(error);
-                            $scope.isSearching = false;
-                        };
-                        promise.then(success, error);
+                        searchGaurdian();
                     }
                     else if ($scope.tabName === "You Tube") {
-                        promise = tabService.youtubeSearch($scope.searchText, "video");
-                        success = function(response) {
-                            console.log(response.data.items);
-                            $scope.documents = response.data.items;
-                            $scope.isSearching = false;
-                        };
-                        error = function(response) {
-                            console.log(response);
-                            $scope.isSearching = false;
-                        };
-                        promise.then(success, error);
+                        searchYoutube();
                     }
                 };
+
                 $mdSidenav('right').open();
                 $scope.openRightMenu = function () {
                     $scope.documents = "";
