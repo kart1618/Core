@@ -28,7 +28,12 @@
     </md-list>
     <div class="md-actions" layout="row" layout-align="end center">
         <a href="{{document.webUrl}}">Read Full Article</a>
-        <md-button ng-click="analyzeSentiment(document.webUrl)">Analyze Sentiment</md-button>
+        <md-button ng-disabled="document.sentimentVerdict" ng-click="analyzeSentiment(document.webUrl, document)">
+            <span ng-if="document.sentimentVerdict === undefined">Analyze Sentiment</span>
+            <md-icon ng-if="document.sentimentVerdict === 'positive'" md-svg-icon="img/thumb_up.svg"></md-icon>
+            <md-icon ng-if="document.sentimentVerdict === 'negative'" md-svg-icon="img/thumb_down.svg"></md-icon>
+            <md-icon ng-if="document.sentimentVerdict === 'neutral'" md-svg-icon="img/trending_neutral.svg"></md-icon>
+        </md-button>
     </div>
 </md-card>
 
@@ -44,8 +49,8 @@
         <!--<p>{{document.id.videoId}}</p>-->
     </md-list>
     <!--<iframe id="ytplayer" type="text/html" width="640" height="390"-->
-            <!--src="http://www.youtube.com/embed/M7lc1UVf-VE?autoplay=0&origin=http://example.com"-->
-            <!--frameborder="0"/>-->
+    <!--src="http://www.youtube.com/embed/M7lc1UVf-VE?autoplay=0&origin=http://example.com"-->
+    <!--frameborder="0"/>-->
     <div class="md-actions" layout="row" layout-align="end center">
         <a href="https://www.youtube.com/watch?v={{document.id.videoId}}">Watch on YouTube</a>
     </div>
