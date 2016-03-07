@@ -1,21 +1,22 @@
-"use strict";
+'use strict';
 
-angular.module("core")
-    .directive("addTab", ["tabService", function (tabService) {
+angular.module('core')
+    .directive('addTab', ['tabService', function (tabService) {
         return {
-            restrict: "E",
-            templateUrl: "directives/common/addTab/addTab.html",
+            restrict: 'E',
+            templateUrl: 'directives/common/addTab/addTab.html',
             scope: {
-                tabName: "@",
-                showTab: "="
+                tabName: '@',
+                showTab: '='
             },
-            controller: ["$scope", "$filter", "$http", "tabService", "$mdSidenav", function ($scope, $filter, $http, tabService, $mdSidenav) {
+            controller: ['$scope', '$rootScope', '$filter', '$http', 'tabService', '$mdSidenav', function ($scope, $rootScope, $filter, $http, tabService, $mdSidenav) {
                 $scope.documents = [];
                 $scope.isSearching = false;
                 $scope.showSearchOptions = false;
                 var nytPageResetCounter = 0;
                 var guardianPageResetCounter = 0;
                 var promise, success, error;
+                $scope.tabStringLiterals = $rootScope.literals.tabs;
                 $scope.searchOptions = {
                     page: 1
                 };
@@ -58,7 +59,6 @@ angular.module("core")
                 var searchYoutube = function () {
                     promise = tabService.youtubeSearch($scope.searchText, "video");
                     success = function(response) {
-                        console.log(response.data.items);
                         $scope.documents = response.data.items;
                         $scope.isSearching = false;
                     };
@@ -86,9 +86,7 @@ angular.module("core")
                 $mdSidenav('right').open();
                 $scope.openRightMenu = function () {
                     $scope.documents = "";
-                    console.log("Documents cleared!");
                     $mdSidenav('right').toggle();
-                    console.log("HELLO");
                 };
                 $scope.openRightMenu();
 
@@ -97,7 +95,8 @@ angular.module("core")
                     $scope.showSearchOptions = false;
                     if ($scope.tabName === "The New York Times") {
                         nytPageResetCounter += 1;
-                    } else if ($scope.tabName === "The Guardian") {
+                    }
+                    else if ($scope.tabName === "The Guardian") {
                         guardianPageResetCounter += 1;
                     }
                 }

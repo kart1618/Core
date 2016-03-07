@@ -1,20 +1,18 @@
-<!--<a ui-sref="home.news"> News</a>-->
 <md-toolbar layout="row">
     <div class="md-toolbar-tools">
         <span class="md-flex">
-            Core
+            {{homeStringLiterals.appName}}
         </span>
-
         <span flex></span>
-        <md-menu md-position-mode="target-right target" >
-            <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+        <md-menu md-position-mode="target-right target">
+            <md-button aria-label="{{homeStringLiterals.home.homeMenu}}" class="md-icon-button" ng-click="$mdOpenMenu($event)">
                 <md-icon md-svg-icon="img/menu.svg"></md-icon>
             </md-button>
             <md-menu-content width="4" >
                 <md-menu-item>
                     <md-button ng-click="editProfile()">
                         <div layout="row">
-                            <p flex>Edit profile</p>
+                            <p flex>{{homeStringLiterals.viewProfile}}</p>
                             <md-icon md-menu-align-target md-svg-icon="img/edit.svg" style="margin: auto 3px auto 0;"></md-icon>
                         </div>
                     </md-button>
@@ -22,7 +20,7 @@
                 <md-menu-item>
                     <md-button ng-click="googleSignOut()">
                         <div layout="row">
-                            <p flex>Sign out</p>
+                            <p flex>{{homeStringLiterals.signOut}}</p>
                             <md-icon md-menu-align-target md-svg-icon="img/exit_to_app.svg" style="margin: auto 3px auto 0;"></md-icon>
                         </div>
                     </md-button>
@@ -32,8 +30,8 @@
     </div>
 </md-toolbar>
 <md-tabs layout="column" md-dynamic-height>
-    <data-add-tab tab-name="The New York Times" show-tab="nytTab"></data-add-tab>
-    <data-add-tab tab-name="The Guardian" show-tab="guardianTab"></data-add-tab>
-    <data-add-tab tab-name="You Tube" show-tab="youtubeTab"></data-add-tab>
-    <data-utilities-tab tab-name="Utilities"></data-utilities-tab>
+    <data-add-tab tab-name="{{homeStringLiterals.tabName.nytimes}}" show-tab="nytTab"></data-add-tab>
+    <data-add-tab tab-name="{{homeStringLiterals.tabName.guardian}}" show-tab="guardianTab"></data-add-tab>
+    <data-add-tab tab-name="{{homeStringLiterals.tabName.youtube}}" show-tab="youtubeTab"></data-add-tab>
+    <data-utilities-tab tab-name="{{homeStringLiterals.tabName.utilities}}"></data-utilities-tab>
 </md-tabs>

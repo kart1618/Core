@@ -1,0 +1,29 @@
+{
+  "home": {
+    "appName": "Core",
+    "viewProfile": "View Profile",
+    "signOut": "Sign Out",
+    "homeMenu": "Home Menu",
+    "tabName": {
+      "nytimes": "The New York Times",
+      "guardian": "The Guardian",
+      "youtube": "You Tube",
+      "utilities": "Utilities"
+    }
+  },
+  "tabs": {
+    "clear": "Clear",
+    "searchFor": "Search For",
+    "page": "Page"
+  },
+  "results": {
+    "readFullArticle": "Read Full Article",
+    "watchOnYoutube": "Watch On YouTube",
+    "sentiment": {
+      "analyzeSentiment": "Analyze Sentiment",
+      "positive": "Positive",
+      "negative": "Negative",
+      "neutral": "Neutral"
+    }
+  }
+}

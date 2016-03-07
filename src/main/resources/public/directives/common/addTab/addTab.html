@@ -5,39 +5,26 @@
     <!--<md-button ng-click="openRightMenu()">-->
     <!--Open Right Menu-->
     <!--</md-button>-->
-
     <md-content layout="column" layout-align="left center" flex layout-padding>
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <md-button aria-label="Go Back" data-ng-click="clearResults()">
-                    Clear
+                <md-button aria-label="{{tabStringLiterals.clear}}" data-ng-click="clearResults()">
+                    {{tabStringLiterals.clear}}
                 </md-button>
-                <md-button aria-label="Go Back" data-ng-click="clearResults()">
-                    Save Search
-                </md-button>
-                <h5>
-                    <span>Toolbar with Standard Buttons</span>
-                </h5>
                 <span flex></span>
-                <md-button aria-label="Learn More">
-                    Learn More
-                </md-button>
-                <md-button class="md-fab md-mini" aria-label="Favorite">
-                    <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
-                </md-button>
             </div>
         </md-toolbar>
         <div class="app-content">
             <form data-ng-submit="search(searchText)">
                 <md-input-container class="long" data-ng-show="!isSearching">
-                    <label>Search for</label>
+                    <label>{{tabStringLiterals.searchFor}}</label>
                     <input data-ng-model="searchText"/>
                 </md-input-container>
             </form>
             <form data-ng-submit="search(searchText)">
                 <div layout="row">
                     <md-input-container class="long" data-ng-show="showSearchOptions">
-                        <label>Page</label>
+                        <label>{{tabStringLiterals.page}}</label>
                         <input data-ng-model="searchOptions.page" type="number" step="1"/>
                     </md-input-container>
                     <md-progress-circular md-theme="blue" md-mode="indeterminate"

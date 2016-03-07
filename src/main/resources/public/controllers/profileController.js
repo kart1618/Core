@@ -1,6 +1,7 @@
-"use strict";
+'use strict';
 
-angular.module("core")
-    .controller("profileController", ["$scope", "$http", "$state", "$mdSidenav", "loginService", function ($scope, $http, $state, $mdSidenav, loginService) {
-    console.log("Inside profile controller.");
-}]);
+angular.module('core')
+    .controller('profileController', ['$scope', '$http', '$state', '$mdSidenav', 'loginService',
+        function ($scope, $http, $state, $mdSidenav, loginService) {
+
+    }]);

@@ -9,22 +9,22 @@
         <p>{{document.lead_paragraph}}</p>
     </md-list>
     <div class="md-actions" layout="row" layout-align="end center">
-        <a href="{{document.web_url}}">Read Full Article</a>
+        <a href="{{document.web_url}}">{{resultsStringLiterals.readFullArticle}}</a>
         <md-button ng-disabled="document.sentimentVerdict" ng-click="analyzeSentiment(document.web_url, document)">
-            <span ng-if="document.sentimentVerdict === undefined">Analyze Sentiment</span>
+            <span ng-if="document.sentimentVerdict === undefined">{{resultsStringLiterals.sentiment.analyzeSentiment}}</span>
             <md-icon ng-if="document.sentimentVerdict === 'positive'" md-svg-icon="img/thumb_up.svg">
                 <md-tooltip md-direction="top">
-                    Positive
+                    {{resultsStringLiterals.sentiment.positive}}
                 </md-tooltip>
             </md-icon>
             <md-icon ng-if="document.sentimentVerdict === 'negative'" md-svg-icon="img/thumb_down.svg">
                 <md-tooltip md-direction="top">
-                    Negative
+                    {{resultsStringLiterals.sentiment.negative}}
                 </md-tooltip>
             </md-icon>
             <md-icon ng-if="document.sentimentVerdict === 'neutral'" md-svg-icon="img/drag_handle.svg">
                 <md-tooltip md-direction="top">
-                    Neutral
+                    {{resultsStringLiterals.sentiment.neutral}}
                 </md-tooltip>
             </md-icon>
         </md-button>
@@ -42,22 +42,22 @@
         <p>{{document.lead_paragraph}}</p>
     </md-list>
     <div class="md-actions" layout="row" layout-align="end center">
-        <a href="{{document.webUrl}}">Read Full Article</a>
+        <a href="{{document.webUrl}}">{{resultsStringLiterals.readFullArticle}}</a>
         <md-button ng-disabled="document.sentimentVerdict" ng-click="analyzeSentiment(document.webUrl, document)">
-            <span ng-if="document.sentimentVerdict === undefined">Analyze Sentiment</span>
+            <span ng-if="document.sentimentVerdict === undefined">{{resultsStringLiterals.sentiment.analyzeSentiment}}</span>
             <md-icon ng-if="document.sentimentVerdict === 'positive'" md-svg-icon="img/thumb_up.svg">
                 <md-tooltip md-direction="top">
-                    Positive
+                    {{resultsStringLiterals.sentiment.positive}}
                 </md-tooltip>
             </md-icon>
             <md-icon ng-if="document.sentimentVerdict === 'negative'" md-svg-icon="img/thumb_down.svg">
                 <md-tooltip md-direction="top">
-                    Negative
+                    {{resultsStringLiterals.sentiment.negative}}
                 </md-tooltip>
             </md-icon>
             <md-icon ng-if="document.sentimentVerdict === 'neutral'" md-svg-icon="img/drag_handle.svg">
                 <md-tooltip md-direction="top">
-                    Neutral
+                    {{resultsStringLiterals.sentiment.neutral}}
                 </md-tooltip>
             </md-icon>
         </md-button>
@@ -78,6 +78,6 @@
     <!--src="http://www.youtube.com/embed/M7lc1UVf-VE?autoplay=0&origin=http://example.com"-->
     <!--frameborder="0"/>-->
     <div class="md-actions" layout="row" layout-align="end center">
-        <a href="https://www.youtube.com/watch?v={{document.id.videoId}}">Watch on YouTube</a>
+        <a href="https://www.youtube.com/watch?v={{document.id.videoId}}">{{resultsStringLiterals.watchOnYoutube}}</a>
     </div>
 </md-card>

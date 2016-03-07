@@ -1,21 +1,22 @@
-"use strict";
-angular.module("core")
-    .directive("utilitiesTab", ["coreService", function (coreService) {
+'use strict';
+angular.module('core')
+    .directive('utilitiesTab', ['coreService', function (coreService) {
         return {
-            restrict: "E",
-            templateUrl: "directives/utilitiesTab/UtilitiesTab.html",
+            restrict: 'E',
+            templateUrl: 'directives/utilitiesTab/utilitiesTab.html',
             scope: {
-                tabName: "@"
+                tabName: '@'
             },
-            controller: ['$scope',"coreService", function ($scope, coreService) {
+            controller: ['$scope','coreService', function ($scope, coreService) {
                 $scope.user = {
-                    nytFrequency: "Daily",
-                    guardianFrequency: "Daily"
+                    nytFrequency: 'Daily',
+                    guardianFrequency: 'Daily'
                 };
 
-                $scope.frequencies = ("Daily Weekly Monthly").split(" ").map(function(frequency) {
+                $scope.frequencies = ('Daily Weekly Monthly').split(' ').map(function(frequency) {
                         return {key: frequency};
                 });
+
                 var promise = coreService.nytArticleSearch();
                 var success = function(response) {
                     $scope.test = response;

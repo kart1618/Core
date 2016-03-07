@@ -1,21 +1,18 @@
-"use strict";
-angular.module("core")
-    .directive("showResults", ["tabService", function () {
+'use strict';
+angular.module('core')
+    .directive('showResults', ['tabService', function () {
         return {
-            restrict: "E",
-            templateUrl: "directives/common/showResults/showResults.html",
+            restrict: 'E',
+            templateUrl: 'directives/common/showResults/showResults.html',
             scope: {
-                tabName: "@",
-                resultArr: "="
+                tabName: '@',
+                resultArr: '='
             },
-            controller: ["$scope", "tabService", function ($scope, tabService) {
+            controller: ['$scope', '$rootScope', 'tabService', function ($scope, $rootScope, tabService) {
 
                 $scope.displayResults = [false, false, false];
                 $scope.url = "";
-                $scope.sentimentVerdict;
-                angular.forEach($scope.resultArr, function(value, key) {
-
-                });
+                $scope.resultsStringLiterals = $rootScope.literals.results;
                 var promise, success, error;
                 if ($scope.tabName === "The New York Times") {
                     $scope.displayResults[0] = true;
@@ -37,7 +34,6 @@ angular.module("core")
                     $scope.url = url;
                     promise = tabService.hodSentimentAnalysis($scope.url);
                     success = function (response) {
-                        console.log(response.data.aggregate);
                         document.sentimentVerdict = response.data.aggregate.sentiment;
                     };
                     error = function (error) {

@@ -19,6 +19,7 @@ angular.module("core")
                 return response;
             });
         };
+
         tabService.youtubeSearch = function (searchText, type) {
             var videoSearchEndPoint = "https://www.googleapis.com/youtube/v3/search?part=snippet";
             videoSearchEndPoint += "&maxResults=10" + "&order=relevance" + "&q=" + searchText + "&type=" + type + "&key=" + apiKeys["googleBrowserKey"];
