@@ -15,20 +15,29 @@
             </div>
         </md-toolbar>
         <div class="app-content">
-            <form data-ng-submit="search(searchText)">
+            <form data-ng-submit="search(searchText, selectedSortOrder)">
                 <md-input-container class="long" data-ng-show="!isSearching">
                     <label>{{tabStringLiterals.searchFor}}</label>
                     <input data-ng-model="searchText"/>
                 </md-input-container>
+                <md-input-container class="search" data-ng-show="!isSearching">
+                    <label>{{tabStringLiterals.sort}}</label>
+                    <md-select ng-model="selectedSortOrder">
+                        <md-optgroup label="{{tabStringLiterals.sortBy}}">
+                            <md-option ng-value="sort" ng-repeat="sort in sortOrder">{{sort}}</md-option>
+                        </md-optgroup>
+                    </md-select>
+                </md-input-container>
+                <md-button class="md-raised md-primary search" data-ng-show="!isSearching"
+                           data-ng-click="search(searchText, selectedSortOrder)">{{tabStringLiterals.search}}</md-button>
             </form>
-            <form data-ng-submit="search(searchText)">
+            <form data-ng-submit="search(searchText, selectedSortOrder)">
                 <div layout="row">
                     <md-input-container class="long" data-ng-show="showSearchOptions">
                         <label>{{tabStringLiterals.page}}</label>
                         <input data-ng-model="searchOptions.page" type="number" step="1"/>
                     </md-input-container>
-                    <md-progress-circular md-theme="blue" md-mode="indeterminate"
-                                          data-ng-if="isSearching"></md-progress-circular>
+                    <md-progress-circular md-theme="blue" md-mode="indeterminate" data-ng-if="isSearching"></md-progress-circular>
                 </div>
             </form>
             <data-show-results tab-name={{tabName}} result-arr="documents"></data-show-results>

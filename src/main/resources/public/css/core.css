@@ -22,6 +22,9 @@ md-backdrop.md-sidenav-backdrop {
     margin-right: 100px;
 }
 
+.search {
+    top: -12px;
+}
 .main-menu-icon {
     margin: auto 3px auto 0;
 }

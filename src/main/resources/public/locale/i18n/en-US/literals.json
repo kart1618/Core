@@ -14,7 +14,10 @@
   "tabs": {
     "clear": "Clear",
     "searchFor": "Search For",
-    "page": "Page"
+    "page": "Page",
+    "sort": "Sort",
+    "sortBy": "Sort By",
+    "search": "Search"
   },
   "results": {
     "readFullArticle": "Read Full Article",
